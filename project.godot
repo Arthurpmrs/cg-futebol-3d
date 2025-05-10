@@ -10,6 +10,7 @@ config_version=5
 
 [application]
 
-config/name="cg-futebol-3d"
+config/name="CG"
+run/main_scene="uid://bawsmgw3ya7rn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
