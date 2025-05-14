@@ -16,8 +16,9 @@ var _gravity := -30
 @onready var _camera_pivot: Node3D = %CameraPivot
 @onready var _camera: Camera3D = %Camera3D
 @onready var _skin: Node3D = %Knight
+@onready var _ball_pivot: Node3D = %BallPivot
+@onready var _ball: Node3D = %Ball
 @onready var animation_player = $Pivot/Knight/AnimationPlayer
-
 
 func _ready() -> void:
 	GameManager.player = self
@@ -65,6 +66,7 @@ func _physics_process(delta: float) -> void:
 		_last_movement_direction = move_direction
 	var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
 	_skin.global_rotation.y = lerp_angle(_skin.rotation.y, target_angle, rotation_speed * delta)
+	_ball_pivot.rotation.y = _skin.global_rotation.y
 	
 	var ground_speed := velocity.length()
 	if is_starting_jump:

@@ -117,7 +117,7 @@ size = Vector3(91.6502, 20, 91.584)
 data = ExtResource("44_gngh3")
 
 [node name="Hero" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161469, 0.403195, -10.5729)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.34202, 0, -5.96147)
 
 [node name="Mapa - Floresta" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
