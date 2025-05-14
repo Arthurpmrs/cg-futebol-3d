@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dukpduc3v7gj7"]
+
+[ext_resource type="PackedScene" uid="uid://bdl1q1tt0o6x5" path="res://addons/KayKit_HalloweenBits_1.0_FREE/Assets/gltf/lantern_standing.gltf" id="1_mi3vd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mi3vd"]
+size = Vector3(0.671448, 0.977905, 0.66687)
+
+[node name="lantern_standing2" instance=ExtResource("1_mi3vd")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="0"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.148872, 0.280527, -0.00885075)
+light_color = Color(1, 0.611765, 0.219608, 1)
+light_energy = 5.376
+omni_range = 6.62342
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00850949, 0.454107, -0.0141438)
+shape = SubResource("BoxShape3D_mi3vd")
