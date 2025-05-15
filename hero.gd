@@ -16,7 +16,6 @@ var _gravity := -30
 @onready var _camera_pivot: Node3D = %CameraPivot
 @onready var _camera: Camera3D = %Camera3D
 @onready var _skin: Node3D = %Knight
-@onready var _ball_pivot: Node3D = %BallPivot
 @onready var _ball: RigidBody3D = %Ball
 @onready var animation_player = $Pivot/Knight/AnimationPlayer
 @onready var initial_position: Vector3 = global_transform.origin

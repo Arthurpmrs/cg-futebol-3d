@@ -10,28 +10,20 @@ var offset := Vector3(0.0, 0.4, 1.2)
 @export var bola_radius := 0.5
 @onready var _head: Node3D = %Head
 @onready var _last_position = _head.global_transform.origin
-@onready var _last_rotation_y = 0.0
 @onready var _attached_y_rotation = 0.0
 @onready var initial_position: Vector3 = global_transform.origin
 
 func _ready() -> void:
 	GameManager.ball = self
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	match state:
 		BallState.ATTACHED:
 			if attached_to:
 				sleeping = true
-				#linear_velocity = Vector3.ZERO
-				#angular_velocity = Vector3.ZERO
 				
 				global_transform.basis = Basis.IDENTITY
 				global_transform.origin = attached_to.global_transform.origin
-				
-				# rotation = attached_to.rotation
-				
-				#_head.global_transform.origin = attached_to.global_transform.origin
-				#_head.transform.origin = offset
 				_head.transform.origin = offset.rotated(Vector3.UP, _attached_y_rotation)
 	
 				var current_position = _head.global_transform.origin
@@ -59,10 +51,9 @@ func kick_ball():
 
 		# Direção do chute
 		var direction = attached_to._skin.global_transform.basis.z.normalized()
-		print(direction)
 
 		# Força do chute
-		var kick_strength = 24.0
+		var kick_strength = randf_range(20.0, 38.0)
 
 		# Aplica velocidade
 		linear_velocity = direction * kick_strength

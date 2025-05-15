@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://ba0hlx3ru1bin"]
+[gd_scene load_steps=61 format=3 uid="uid://ba0hlx3ru1bin"]
 
 [ext_resource type="PackedScene" uid="uid://dmi5m60021myi" path="res://hero.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://d1xt3nhybxysy" path="res://ball.tscn" id="2_0n3wm"]
@@ -44,6 +44,7 @@
 [ext_resource type="PackedScene" uid="uid://bnnlqn57s7s6p" path="res://enemy.tscn" id="42_d2t1y"]
 [ext_resource type="PackedScene" uid="uid://dukpduc3v7gj7" path="res://addons/KayKit_HalloweenBits_1.0_FREE/Assets/gltf/lantern_standing.tscn" id="43_d2t1y"]
 [ext_resource type="VoxelGIData" uid="uid://bn63j5627gvl1" path="res://main.VoxelGI_data.res" id="44_gngh3"]
+[ext_resource type="PackedScene" uid="uid://cwihvws58mx" path="res://goal_keeper.tscn" id="45_0n3wm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 sky_top_color = Color(0.119319, 0.102857, 0.14065, 1)
@@ -124,6 +125,11 @@ data = ExtResource("44_gngh3")
 
 [node name="Hero" parent="." instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.34202, 0.523298, -5.96147)
+mouse_sensitivity = 0.25
+move_speed = 8.0
+acceleration = 20.0
+rotation_speed = 12.0
+jump_impulse = 12.0
 
 [node name="Mapa - Floresta" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -197,7 +203,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225044, 1.08552, -15.8965)
 shape = SubResource("BoxShape3D_ycdy4")
 
 [node name="GoalArea" parent="Mapa - Floresta/GoalA" instance=ExtResource("7_d2t1y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0204735, 0.510489, -0.105606)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13675, 0.510489, -0.15271)
 owner_team_name = "skeleton"
 
 [node name="GoalB" type="StaticBody3D" parent="Mapa - Floresta"]
@@ -257,7 +263,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03162, 1.08552, -14.8891)
 shape = SubResource("BoxShape3D_ycdy4")
 
 [node name="GoalArea" parent="Mapa - Floresta/GoalB" instance=ExtResource("7_d2t1y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.423037, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05499, 0.478797, 0.889982)
 owner_team_name = "hero"
 
 [node name="Lateral" type="StaticBody3D" parent="Mapa - Floresta"]
@@ -1031,3 +1037,6 @@ transform = Transform3D(-0.818812, 0, -0.574062, 0, 1, 0, 0.574062, 0, -0.818812
 
 [node name="Enemy6" parent="." instance=ExtResource("42_d2t1y")]
 transform = Transform3D(-0.930769, 0, 0.365608, 0, 1, 0, -0.365608, 0, -0.930769, -6.92985, 0.516772, 20.2482)
+
+[node name="GoalKeeper" parent="." instance=ExtResource("45_0n3wm")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.30856, 0.466733, 31.372)
