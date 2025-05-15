@@ -21,8 +21,17 @@ var _gravity := -30
 @onready var initial_position: Vector3 = global_transform.origin
 @onready var _ball_release_timer = 0.0
 
+var max_life := 5
+var current_life := max_life
+var invincible := false
+var invincible_time := 1.0
+var invincible_timer := 0.0
+signal life_changed(new_life)
+
 func _ready() -> void:
 	GameManager.player = self
+	var hud = get_tree().get_root().get_node("Main/UI")  # ajuste o caminho conforme sua cena
+	self.connect("life_changed", Callable(hud, "update_hearts"))
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"):
@@ -94,3 +103,29 @@ func _physics_process(delta: float) -> void:
 			animation_player.play("Running_A")
 		else:
 			animation_player.play("Idle")
+
+	if invincible:
+		invincible_timer -= delta
+		if invincible_timer <= 0:
+			invincible = false
+
+	
+	# Checa a colisão com o esqueleto
+	for index in range(get_slide_collision_count()):
+		var collision = get_slide_collision(index)
+		if collision.get_collider() == null:
+			continue
+
+		if collision.get_collider().is_in_group("skeleton"):
+			take_damage()
+			break
+
+func take_damage(amount = 1):
+	current_life = max(current_life - amount, 0)
+	emit_signal("life_changed", int(current_life))
+	if current_life == 0:
+		die()
+
+func die():
+	# show_game_over("")
+	print("Morreu")
