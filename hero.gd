@@ -27,6 +27,8 @@ var _invincible_timer := 0.0
 
 signal life_changed(new_life)
 
+signal player_died()
+
 func _ready() -> void:
 	GameManager.player = self
 	var hud = get_tree().get_root().get_node("Main/UI")  # ajuste o caminho conforme sua cena
@@ -128,8 +130,7 @@ func take_damage(amount = 1):
 		die()
 
 func die():
-	# show_game_over("")
-	print("Morreu")
+	emit_signal("player_died")
 
 func set_mesh_opacity(mesh_instance: MeshInstance3D, opacity: float) -> void:
 	if mesh_instance.mesh == null:
@@ -155,3 +156,5 @@ func set_opacity_recursive(node: Node, opacity: float) -> void:
 		if child is MeshInstance3D:
 			set_mesh_opacity(child, opacity)
 		set_opacity_recursive(child, opacity)
+	
+	

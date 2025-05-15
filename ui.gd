@@ -1,6 +1,6 @@
 extends Control
 
-var total_seconds = 5  # 5 minutos
+var total_seconds = 300  # 5 minutos
 
 @onready var label = $CountdownText
 @onready var timer = $CountdownTimer
@@ -24,6 +24,7 @@ func _ready():
 	game_over_ui = game_over_scene.instantiate()
 	game_over_ui.visible = false
 	add_child(game_over_ui)
+	GameManager.player.connect("player_died", Callable(self, "show_game_over"))
 
 func _on_score_updated(score_hero: int, score_skeleton: int) -> void:
 	_placar.text = "%s x %s" % [score_hero, score_skeleton]
@@ -56,7 +57,6 @@ func show_game_over():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	game_over_ui.visible = true
 	get_tree().paused = true
-	print("Game Over visible:", game_over_ui.visible)
 	
 func piscar_texto():
 	var tween := create_tween()
