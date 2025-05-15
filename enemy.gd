@@ -6,18 +6,20 @@ extends CharacterBody3D
 @export var acceleration := 12.0
 @export var rotation_speed := 3.0
 var _gravity := -30
-var _last_movement_direction := Vector3.BACK
 
 @onready var player: CharacterBody3D = GameManager.player
 @onready var animation_player = $Pivot/Skeleton_Minion/AnimationPlayer
 @onready var _skin: Node3D = %Skeleton_Minion
-
+@onready var initial_position: Vector3 = global_transform.origin
 var random_speed: float = randi_range(min_speed, max_speed)
 var target_offset_x: float = randf_range(2.0, 6.0) * (1 if randf() > 0.5 else -1)
 var target_offset_z: float = randf_range(2.0, 6.0) * (1 if randf() > 0.5 else -1)
 var attack_target: Vector3 = Vector3.ZERO
 var attack_speed: float = 0.0
 var is_in_attack_mode: bool = false
+
+func _ready() -> void:
+	GameManager.register_enemy(self)
 
 func get_target_position() -> Vector3:
 	var player_velocity = player.velocity
@@ -68,8 +70,7 @@ func _get_skin_rotation_angle(target: Vector3, delta: float) -> float:
 	if dir.length() < 0.01:
 		return _skin.global_rotation.y 
 	
-	var target_basis = Basis()
-	target_basis = target_basis.looking_at(dir, Vector3.UP)
+	var target_basis = Basis.looking_at(dir, Vector3.UP)
 	var target_angle = target_basis.get_euler().y + deg_to_rad(180)
 	
 	return lerp_angle(_skin.global_rotation.y, target_angle, rotation_speed * delta)

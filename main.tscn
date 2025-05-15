@@ -1,9 +1,10 @@
-[gd_scene load_steps=58 format=3 uid="uid://ba0hlx3ru1bin"]
+[gd_scene load_steps=59 format=3 uid="uid://ba0hlx3ru1bin"]
 
 [ext_resource type="PackedScene" uid="uid://dmi5m60021myi" path="res://hero.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://48ivn0ar55i" path="res://addons/KayKit_HalloweenBits_1.0_FREE/Assets/gltf/arch.gltf" id="6_4c57u"]
 [ext_resource type="PackedScene" uid="uid://m3i0a76ssrqi" path="res://addons/KayKit_HalloweenBits_1.0_FREE/Assets/gltf/fence_pillar.gltf" id="6_272bh"]
 [ext_resource type="PackedScene" uid="uid://cnvsi5m8wlafq" path="res://addons/KayKit_HalloweenBits_1.0_FREE/Assets/gltf/fence_seperate.gltf" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://bvf5eehwvve4u" path="res://goal_area.tscn" id="7_d2t1y"]
 [ext_resource type="PackedScene" uid="uid://bfcca6thmbr0k" path="res://addons/KayKit_HalloweenBits_1.0_FREE/Assets/gltf/fence_gate.gltf" id="9_come4"]
 [ext_resource type="PackedScene" uid="uid://c8f4r74761fe3" path="res://addons/KayKit_HalloweenBits_1.0_FREE/Assets/gltf/fence_seperate_broken.gltf" id="9_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bw80ng3ye1f0q" path="res://addons/KayKit_HalloweenBits_1.0_FREE/Assets/gltf/tree_dead_large.gltf" id="9_getpj"]
@@ -117,7 +118,7 @@ size = Vector3(91.6502, 20, 91.584)
 data = ExtResource("44_gngh3")
 
 [node name="Hero" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.34202, 0, -5.96147)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.34202, 0.523298, -5.96147)
 
 [node name="Mapa - Floresta" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -190,6 +191,10 @@ shape = SubResource("BoxShape3D_ycdy4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225044, 1.08552, -15.8965)
 shape = SubResource("BoxShape3D_ycdy4")
 
+[node name="GoalArea" parent="Mapa - Floresta/GoalA" instance=ExtResource("7_d2t1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.510485, 0)
+owner_team_name = "skeleton"
+
 [node name="GoalB" type="StaticBody3D" parent="Mapa - Floresta"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 33.551, 0, 1.73652)
 
@@ -245,6 +250,10 @@ shape = SubResource("BoxShape3D_ycdy4")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Mapa - Floresta/GoalB"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03162, 1.08552, -14.8891)
 shape = SubResource("BoxShape3D_ycdy4")
+
+[node name="GoalArea" parent="Mapa - Floresta/GoalB" instance=ExtResource("7_d2t1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.423037, 0)
+owner_team_name = "hero"
 
 [node name="Lateral" type="StaticBody3D" parent="Mapa - Floresta"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24937e-06, 0, -27.527)

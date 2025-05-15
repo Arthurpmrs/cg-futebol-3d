@@ -203,7 +203,8 @@ blend_shape_mode = 0
 radius = 0.505696
 
 [node name="Ball" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.407703, 0)
+collision_layer = 2
+collision_mask = 0
 
 [node name="Skeleton_Minion" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.436232, 0)
@@ -227,6 +228,5 @@ skin = SubResource("Skin_21gq6")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0183127, 0.541513, 0.016286)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0183127, 0.0441773, 0.016286)
 shape = SubResource("SphereShape3D_x8fbi")
-disabled = true
