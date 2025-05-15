@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://ba0hlx3ru1bin"]
+[gd_scene load_steps=64 format=3 uid="uid://ba0hlx3ru1bin"]
 
 [ext_resource type="PackedScene" uid="uid://dmi5m60021myi" path="res://hero.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://d1xt3nhybxysy" path="res://ball.tscn" id="2_0n3wm"]
@@ -46,8 +46,6 @@
 [ext_resource type="Script" uid="uid://cqab7fda5prab" path="res://ui.gd" id="43_gngh3"]
 [ext_resource type="Texture2D" uid="uid://iklupddvnxis" path="res://addons/UI/banner.png" id="44_0n3wm"]
 [ext_resource type="VoxelGIData" uid="uid://bn63j5627gvl1" path="res://main.VoxelGI_data.res" id="44_gngh3"]
-[ext_resource type="FontFile" uid="uid://ufhn6w07r7k7" path="res://addons/UI/fonts/MedievalSharp-Regular.ttf" id="45_0n3wm"]
-[ext_resource type="Texture2D" uid="uid://cdk2aa367cle6" path="res://addons/UI/heart_full.png" id="46_qnost"]
 [ext_resource type="PackedScene" uid="uid://cwihvws58mx" path="res://goal_keeper.tscn" id="45_0n3wm"]
 [ext_resource type="PackedScene" uid="uid://baxjkgcksbaja" path="res://referee.tscn" id="46_qnost"]
 
@@ -220,14 +218,6 @@ shape = SubResource("BoxShape3D_ycdy4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225044, 1.08552, -15.8965)
 shape = SubResource("BoxShape3D_ycdy4")
 
-[node name="GoalArea" parent="Mapa - Floresta/GoalA" instance=ExtResource("7_d2t1y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13675, 0.510489, -0.15271)
-owner_team_name = "skeleton"
-
-[node name="GoalArea" parent="Mapa - Floresta/GoalA" instance=ExtResource("7_d2t1y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13675, 0.510489, -0.15271)
-owner_team_name = "skeleton"
-
 [node name="GoalB" type="StaticBody3D" parent="Map"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 33.551, 0, 1.73652)
 
@@ -283,14 +273,6 @@ shape = SubResource("BoxShape3D_ycdy4")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Map/GoalB"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03162, 1.08552, -14.8891)
 shape = SubResource("BoxShape3D_ycdy4")
-
-[node name="GoalArea" parent="Mapa - Floresta/GoalB" instance=ExtResource("7_d2t1y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05499, 0.478797, 0.889982)
-owner_team_name = "hero"
-
-[node name="GoalArea" parent="Mapa - Floresta/GoalB" instance=ExtResource("7_d2t1y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05499, 0.478797, 0.889982)
-owner_team_name = "hero"
 
 [node name="Lateral" type="StaticBody3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.24937e-06, 0, -27.527)
@@ -1046,6 +1028,22 @@ transform = Transform3D(-0.0259327, 0, -0.999664, 0, 1, 0, 0.999664, 0, -0.02593
 [node name="path_D16" parent="Map/Path" instance=ExtResource("40_h8e4i")]
 transform = Transform3D(-0.0259327, 0, -0.999664, 0, 1, 0, 0.999664, 0, -0.0259327, -0.883306, 0.516745, 2.52682)
 
+[node name="Mapa - Floresta_GoalA#GoalArea" parent="." instance=ExtResource("7_d2t1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13675, 0.510489, -0.15271)
+owner_team_name = "skeleton"
+
+[node name="Mapa - Floresta_GoalA#GoalArea2" parent="." instance=ExtResource("7_d2t1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13675, 0.510489, -0.15271)
+owner_team_name = "skeleton"
+
+[node name="Mapa - Floresta_GoalB#GoalArea" parent="." instance=ExtResource("7_d2t1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05499, 0.478797, 0.889982)
+owner_team_name = "hero"
+
+[node name="Mapa - Floresta_GoalB#GoalArea2" parent="." instance=ExtResource("7_d2t1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05499, 0.478797, 0.889982)
+owner_team_name = "hero"
+
 [node name="UI" type="Control" parent="."]
 process_mode = 3
 layout_mode = 3
@@ -1053,6 +1051,7 @@ anchors_preset = 0
 script = ExtResource("43_gngh3")
 
 [node name="CountdownTexture" type="TextureRect" parent="UI"]
+layout_mode = 0
 offset_top = -1.0
 offset_right = 1024.0
 offset_bottom = 1023.0
@@ -1065,18 +1064,17 @@ offset_left = 45.0
 offset_top = 48.0
 offset_right = 86.0
 offset_bottom = 65.0
-theme_override_fonts/font = ExtResource("45_0n3wm")
 theme_override_font_sizes/font_size = 14
 text = "05:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PlacarLabel" type="Label" parent="UI"]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 61.0
 offset_right = 110.0
 offset_bottom = 93.0
-theme_override_fonts/font = ExtResource("45_0n3wm")
 theme_override_font_sizes/font_size = 25
 text = "0 x 0"
 horizontal_alignment = 1
@@ -1086,6 +1084,7 @@ vertical_alignment = 1
 autostart = true
 
 [node name="LifeContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 0
 offset_left = 133.0
 offset_top = 42.0
 offset_right = 5269.0
@@ -1094,23 +1093,18 @@ scale = Vector2(0.04, 0.04)
 
 [node name="Heart1" type="TextureRect" parent="UI/LifeContainer"]
 layout_mode = 2
-texture = ExtResource("46_qnost")
 
 [node name="Heart2" type="TextureRect" parent="UI/LifeContainer"]
 layout_mode = 2
-texture = ExtResource("46_qnost")
 
 [node name="Heart3" type="TextureRect" parent="UI/LifeContainer"]
 layout_mode = 2
-texture = ExtResource("46_qnost")
 
 [node name="Heart4" type="TextureRect" parent="UI/LifeContainer"]
 layout_mode = 2
-texture = ExtResource("46_qnost")
 
 [node name="Heart5" type="TextureRect" parent="UI/LifeContainer"]
 layout_mode = 2
-texture = ExtResource("46_qnost")
 
 [node name="GoalKeeper" parent="." instance=ExtResource("45_0n3wm")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.30856, 0.466733, 31.372)
