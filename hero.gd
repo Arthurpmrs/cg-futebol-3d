@@ -28,6 +28,8 @@ var invincible_time := 1.0
 var invincible_timer := 0.0
 signal life_changed(new_life)
 
+signal player_died()
+
 func _ready() -> void:
 	GameManager.player = self
 	var hud = get_tree().get_root().get_node("Main/UI")  # ajuste o caminho conforme sua cena
@@ -109,7 +111,6 @@ func _physics_process(delta: float) -> void:
 		if invincible_timer <= 0:
 			invincible = false
 
-	
 	# Checa a colisão com o esqueleto
 	for index in range(get_slide_collision_count()):
 		var collision = get_slide_collision(index)
@@ -127,5 +128,5 @@ func take_damage(amount = 1):
 		die()
 
 func die():
-	# show_game_over("")
-	print("Morreu")
+	emit_signal("player_died")
+	

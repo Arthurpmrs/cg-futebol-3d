@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ci5wtvgw55ph3"]
+[gd_scene load_steps=7 format=3 uid="uid://ci5wtvgw55ph3"]
 
 [ext_resource type="Script" uid="uid://twbg0c255jv5" path="res://game_over.gd" id="1_28vn7"]
 [ext_resource type="FontFile" uid="uid://ufhn6w07r7k7" path="res://addons/UI/fonts/MedievalSharp-Regular.ttf" id="2_k2vha"]
@@ -7,15 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://8623ufymx1qe" path="res://addons/UI/PNG/Default/button_brown.png" id="5_woa3c"]
 [ext_resource type="Texture2D" uid="uid://c4fnf4tp7q8un" path="res://addons/UI/PNG/Default/button_red.png" id="6_dd2jf"]
 
-[sub_resource type="Theme" id="Theme_28vn7"]
-default_font = ExtResource("2_k2vha")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2vha"]
-bg_color = Color(0, 0, 0, 0.447059)
-
 [node name="GameOver" type="Control"]
-process_mode = 3
-clip_contents = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,35 +17,24 @@ grow_vertical = 2
 script = ExtResource("1_28vn7")
 
 [node name="Background" type="Panel" parent="."]
-custom_minimum_size = Vector2(1152, 648)
+layout_mode = 1
+offset_right = 1159.0
+offset_bottom = 653.0
+
+[node name="Modal" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 1.0
-offset_right = -1.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_28vn7")
-theme_override_styles/panel = SubResource("StyleBoxFlat_k2vha")
-
-[node name="Modal" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Frame" type="NinePatchRect" parent="Modal"]
 layout_mode = 0
-offset_left = -224.0
-offset_top = -128.0
-offset_right = 253.0
-offset_bottom = 119.0
+offset_left = 343.0
+offset_top = 181.0
+offset_right = 820.0
+offset_bottom = 428.0
 texture = ExtResource("3_fkf4o")
 patch_margin_left = 44
 patch_margin_top = 44
@@ -62,18 +43,18 @@ patch_margin_bottom = 44
 
 [node name="TitleBanner" type="TextureRect" parent="Modal"]
 layout_mode = 0
-offset_left = -144.0
-offset_top = -155.0
-offset_right = 172.0
-offset_bottom = -76.0
+offset_left = 423.0
+offset_top = 154.0
+offset_right = 739.0
+offset_bottom = 233.0
 texture = ExtResource("4_3u7xm")
 
 [node name="TitleLabel" type="Label" parent="Modal"]
 layout_mode = 0
-offset_left = -129.0
-offset_top = -139.0
-offset_right = 162.0
-offset_bottom = -98.0
+offset_left = 438.0
+offset_top = 170.0
+offset_right = 729.0
+offset_bottom = 211.0
 theme_override_fonts/font = ExtResource("2_k2vha")
 theme_override_font_sizes/font_size = 28
 text = "Fim de Jogo!"
@@ -82,10 +63,10 @@ vertical_alignment = 1
 
 [node name="TextLabel" type="Label" parent="Modal"]
 layout_mode = 0
-offset_left = -200.0
-offset_top = -37.0
-offset_right = 237.0
-offset_bottom = -4.0
+offset_left = 367.0
+offset_top = 272.0
+offset_right = 804.0
+offset_bottom = 305.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_k2vha")
 theme_override_font_sizes/font_size = 26
@@ -95,10 +76,10 @@ vertical_alignment = 1
 
 [node name="PlayAgainButton" type="Button" parent="Modal"]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 25.0
-offset_right = 190.0
-offset_bottom = 67.0
+offset_left = 603.0
+offset_top = 334.0
+offset_right = 757.0
+offset_bottom = 376.0
 text = "asdasd"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Modal/PlayAgainButton"]
@@ -125,10 +106,10 @@ vertical_alignment = 1
 
 [node name="HomeButton" type="Button" parent="Modal"]
 layout_mode = 0
-offset_left = -155.0
-offset_top = 24.0
-offset_right = 1.0
-offset_bottom = 67.0
+offset_left = 412.0
+offset_top = 333.0
+offset_right = 568.0
+offset_bottom = 376.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Modal/HomeButton"]
 layout_mode = 0
