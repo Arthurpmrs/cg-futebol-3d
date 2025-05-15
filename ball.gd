@@ -1,17 +1,73 @@
-extends CharacterBody3D
+extends RigidBody3D
 
-@export var bola_radius := 0.3
-@onready var _last_position = global_transform.origin
+class_name Ball
 
-func _physics_process(_delta: float) -> void:
-	var current_position = global_transform.origin
-	var displacement = current_position - _last_position
+enum BallState { FREE, ATTACHED, JUST_KICKED }
 
-	if displacement.length() > 0.001:
-		var rotation_axis = displacement.normalized().cross(Vector3.UP).normalized()		
-		if rotation_axis.length() > 0.001:
-			rotation_axis = rotation_axis.normalized()
-			var angular_distance = displacement.length() / bola_radius
-			rotate(rotation_axis, angular_distance)
+var state := BallState.FREE
+var attached_to: Node3D = null
+var offset := Vector3(0.0, 0.4, 1.2)
+@export var bola_radius := 0.5
+@onready var _head: Node3D = %Head
+@onready var _last_position = _head.global_transform.origin
+@onready var _last_rotation_y = 0.0
+@onready var _attached_y_rotation = 0.0
+@onready var initial_position: Vector3 = global_transform.origin
 
-	_last_position = current_position
+func _ready() -> void:
+	GameManager.ball = self
+
+func _physics_process(delta: float) -> void:
+	match state:
+		BallState.ATTACHED:
+			if attached_to:
+				sleeping = true
+				#linear_velocity = Vector3.ZERO
+				#angular_velocity = Vector3.ZERO
+				
+				global_transform.basis = Basis.IDENTITY
+				global_transform.origin = attached_to.global_transform.origin
+				
+				# rotation = attached_to.rotation
+				
+				#_head.global_transform.origin = attached_to.global_transform.origin
+				#_head.transform.origin = offset
+				_head.transform.origin = offset.rotated(Vector3.UP, _attached_y_rotation)
+	
+				var current_position = _head.global_transform.origin
+				var displacement = current_position - _last_position
+				
+				if displacement.length() > 0.001:
+					var rotation_axis = displacement.normalized().cross(Vector3.UP).normalized()		
+					if rotation_axis.length() > 0.001:
+						rotation_axis = rotation_axis.normalized()
+						var angular_distance = displacement.length() / bola_radius
+						_head.rotate(rotation_axis, angular_distance)
+			
+				_last_position = current_position
+		BallState.FREE:
+			_head.transform.origin = Vector3.ZERO
+			linear_velocity *= 0.98  # simples simulação de atrito
+
+func set_attached_y_rotation(rotation_y: float) -> void:
+	_attached_y_rotation = rotation_y
+
+func kick_ball():
+	if state == BallState.ATTACHED:
+		state = BallState.FREE
+		sleeping = false
+
+		# Direção do chute
+		var direction = attached_to._skin.global_transform.basis.z.normalized()
+		print(direction)
+
+		# Força do chute
+		var kick_strength = 24.0
+
+		# Aplica velocidade
+		linear_velocity = direction * kick_strength
+
+		# Gira a bola para efeito visual (opcional)
+		angular_velocity = Vector3.RIGHT * 5.0
+		
+		attached_to._ball_release_timer = 0.5

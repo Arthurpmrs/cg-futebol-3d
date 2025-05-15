@@ -3,6 +3,7 @@ extends Node
 signal score_updated(score_hero: int, score_skeleton: int)
 
 var player: CharacterBody3D = null
+var ball: RigidBody3D = null
 @onready var enemies = []
 var score_hero: int = 0
 var score_skeleton: int = 0
@@ -23,5 +24,7 @@ func on_goal_scored(goal: String):
 
 func reset_positions():
 	player.global_transform.origin = player.get("initial_position")
+	ball.global_transform.origin = ball.get("initial_position")
+	ball.linear_velocity = Vector3.ZERO
 	for enemy in enemies:
 		enemy.global_transform.origin = enemy.get("initial_position")

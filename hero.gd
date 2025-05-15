@@ -17,8 +17,10 @@ var _gravity := -30
 @onready var _camera: Camera3D = %Camera3D
 @onready var _skin: Node3D = %Knight
 @onready var _ball_pivot: Node3D = %BallPivot
+@onready var _ball: RigidBody3D = %Ball
 @onready var animation_player = $Pivot/Knight/AnimationPlayer
 @onready var initial_position: Vector3 = global_transform.origin
+@onready var _ball_release_timer = 0.0
 
 func _ready() -> void:
 	GameManager.player = self
@@ -36,6 +38,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	)
 	if is_camera_motion:
 		_camera_input_direction = event.screen_relative * mouse_sensitivity
+	
+	if event.is_action_pressed("kick"):
+		if _ball.state == Ball.BallState.ATTACHED:
+			_ball.kick_ball()
 	
 func _physics_process(delta: float) -> void:
 	_camera_pivot.rotation.x += _camera_input_direction.y * delta
@@ -66,8 +72,19 @@ func _physics_process(delta: float) -> void:
 		_last_movement_direction = move_direction
 	var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
 	_skin.global_rotation.y = lerp_angle(_skin.rotation.y, target_angle, rotation_speed * delta)
-	_ball_pivot.rotation.y = _skin.global_rotation.y
 	
+	if _ball_release_timer > 0.0:
+		_ball_release_timer -= delta
+		
+	#_ball_pivot.rotation.y = _skin.global_rotation.y
+	if _ball.state == Ball.BallState.ATTACHED:
+		_ball.set_attached_y_rotation(_skin.global_rotation.y)
+
+	var dist = global_transform.origin.distance_to(_ball.global_transform.origin)
+	if dist < 2.0 and _ball.state == Ball.BallState.FREE and _ball_release_timer <= 0.0:
+		_ball.state = Ball.BallState.ATTACHED
+		_ball.attached_to = self
+		
 	var ground_speed := velocity.length()
 	if is_starting_jump:
 		animation_player.play("Jump_Start")

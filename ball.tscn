@@ -1,6 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://d1xt3nhybxysy"]
+[gd_scene load_steps=10 format=4 uid="uid://d1xt3nhybxysy"]
 
+[ext_resource type="Script" uid="uid://dkjqvniqxyu24" path="res://ball.gd" id="1_41u45"]
 [ext_resource type="Texture2D" uid="uid://cvg4psc4gd5cg" path="res://addons/Skeleton_Minion_skeleton_texture.png" id="1_x8fbi"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x8fbi"]
+radius = 0.505696
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxx5s"]
 resource_name = "Glow"
@@ -199,34 +203,32 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_x8fbi"]
-radius = 0.505696
+[node name="Ball" type="RigidBody3D"]
+collision_layer = 4
+script = ExtResource("1_41u45")
 
-[node name="Ball" type="CharacterBody3D"]
-collision_layer = 2
-collision_mask = 0
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0183127, 0.0399311, 0.016286)
+shape = SubResource("SphereShape3D_x8fbi")
 
-[node name="Skeleton_Minion" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.436232, 0)
+[node name="Head" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00174633, 0)
 
-[node name="Skeleton_Minion_Eyes" type="MeshInstance3D" parent="Skeleton_Minion"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.16849, 0)
+[node name="Skeleton_Minion_Eyes" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.63583, 0)
 mesh = SubResource("ArrayMesh_qy27s")
 skin = SubResource("Skin_21gq6")
 skeleton = NodePath("")
 
-[node name="Skeleton_Minion_Head" type="MeshInstance3D" parent="Skeleton_Minion"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.16849, 0)
+[node name="Skeleton_Minion_Head" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.63583, 0)
 mesh = SubResource("ArrayMesh_qxe43")
 skin = SubResource("Skin_21gq6")
 skeleton = NodePath("")
 
-[node name="Skeleton_Minion_Jaw" type="MeshInstance3D" parent="Skeleton_Minion"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.16849, 0)
+[node name="Skeleton_Minion_Jaw" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.63583, 0)
 mesh = SubResource("ArrayMesh_bejqe")
 skin = SubResource("Skin_21gq6")
 skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0183127, 0.0441773, 0.016286)
-shape = SubResource("SphereShape3D_x8fbi")
