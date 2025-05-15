@@ -108,7 +108,6 @@ func _physics_process(delta: float) -> void:
 	# Checa a colisão com o esqueleto
 	if _invincible_timer > 0.0:
 		_invincible_timer -= delta
-		print(_invincible_timer)
 		if _invincible_timer < 0.05:
 			set_opacity_recursive(_skin, 1.0)	
 	else:
