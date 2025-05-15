@@ -23,9 +23,8 @@ var _gravity := -30
 
 var max_life := 5
 var current_life := max_life
-var invincible := false
-var invincible_time := 1.0
-var invincible_timer := 0.0
+var _invincible_timer := 0.0
+
 signal life_changed(new_life)
 
 func _ready() -> void:
@@ -103,29 +102,56 @@ func _physics_process(delta: float) -> void:
 			animation_player.play("Running_A")
 		else:
 			animation_player.play("Idle")
-
-	if invincible:
-		invincible_timer -= delta
-		if invincible_timer <= 0:
-			invincible = false
-
 	
 	# Checa a colisão com o esqueleto
-	for index in range(get_slide_collision_count()):
-		var collision = get_slide_collision(index)
-		if collision.get_collider() == null:
-			continue
+	if _invincible_timer > 0.0:
+		_invincible_timer -= delta
+		print(_invincible_timer)
+		if _invincible_timer < 0.05:
+			set_opacity_recursive(_skin, 1.0)	
+	else:
+		for index in range(get_slide_collision_count()):
+			var collision = get_slide_collision(index)
+			if collision.get_collider() == null:
+				continue
 
-		if collision.get_collider().is_in_group("skeleton"):
-			take_damage()
-			break
+			if collision.get_collider().is_in_group("skeleton"):
+				take_damage()
+				break
 
 func take_damage(amount = 1):
 	current_life = max(current_life - amount, 0)
 	emit_signal("life_changed", int(current_life))
+	_invincible_timer = 1.5
+	set_opacity_recursive(_skin, 0.6)
 	if current_life == 0:
 		die()
 
 func die():
 	# show_game_over("")
 	print("Morreu")
+
+func set_mesh_opacity(mesh_instance: MeshInstance3D, opacity: float) -> void:
+	if mesh_instance.mesh == null:
+		return
+
+	opacity = clamp(opacity, 0.0, 1.0)
+	var surface_count = mesh_instance.mesh.get_surface_count()
+
+	for i in surface_count:
+		var material = mesh_instance.get_active_material(i)
+		if material and material is StandardMaterial3D:
+			if opacity < 1.0:
+				material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			else:
+				material.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
+
+			var color = material.albedo_color
+			color.a = opacity
+			material.albedo_color = color
+			
+func set_opacity_recursive(node: Node, opacity: float) -> void:
+	for child in node.get_children():
+		if child is MeshInstance3D:
+			set_mesh_opacity(child, opacity)
+		set_opacity_recursive(child, opacity)

@@ -1,9 +1,10 @@
 extends Control
 
-var total_seconds = 3  # 5 minutos
+var total_seconds = 5  # 5 minutos
 
 @onready var label = $CountdownText
 @onready var timer = $CountdownTimer
+@onready var _placar = %PlacarLabel
 var game_over_ui = null
 
 @onready var hearts := [
@@ -17,12 +18,15 @@ var game_over_ui = null
 func _ready():
 	update_label()
 	timer.timeout.connect(_on_Timer_timeout)
+	GameManager.connect("score_updated", Callable(self, "_on_score_updated"))
 	
 	var game_over_scene = preload("res://game_over.tscn")
 	game_over_ui = game_over_scene.instantiate()
-	game_over_ui.visible = true
+	game_over_ui.visible = false
 	add_child(game_over_ui)
-	
+
+func _on_score_updated(score_hero: int, score_skeleton: int) -> void:
+	_placar.text = "%s x %s" % [score_hero, score_skeleton]
 
 func _on_Timer_timeout():
 	if total_seconds > 0:
