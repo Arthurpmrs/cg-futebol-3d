@@ -9,6 +9,8 @@ var score_hero: int = 0
 var score_skeleton: int = 0
 
 func _process(_delta: float) -> void:
+	if ball == null or player == null:
+		return
 	if ball.position.y < -25.0 or player.position.y < -25.0:
 		reset_positions()
 

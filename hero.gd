@@ -27,7 +27,7 @@ var _invincible_timer := 0.0
 
 signal life_changed(new_life)
 
-signal player_died()
+signal player_died(gameover_title, gameover_text)
 
 func _ready() -> void:
 	GameManager.player = self
@@ -129,7 +129,7 @@ func take_damage(amount = 1):
 		die()
 
 func die():
-	emit_signal("player_died")
+	emit_signal("player_died", "VOCÊ MORREU!", "Talvez usar a cabeça (em vez de chutar uma) fosse melhor.")
 
 func set_mesh_opacity(mesh_instance: MeshInstance3D, opacity: float) -> void:
 	if mesh_instance.mesh == null:

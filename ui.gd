@@ -2,7 +2,7 @@ extends Control
 
 var total_seconds = 300  # 5 minutos
 
-@onready var label = $CountdownText
+@onready var clock_label = $CountdownText
 @onready var timer = $CountdownTimer
 @onready var _placar = %PlacarLabel
 var game_over_ui = null
@@ -16,7 +16,7 @@ var game_over_ui = null
 ]
 
 func _ready():
-	update_label()
+	update_clock_label()
 	timer.timeout.connect(_on_Timer_timeout)
 	GameManager.connect("score_updated", Callable(self, "_on_score_updated"))
 	
@@ -32,19 +32,19 @@ func _on_score_updated(score_hero: int, score_skeleton: int) -> void:
 func _on_Timer_timeout():
 	if total_seconds > 0:
 		if total_seconds <= 15:
-			label.modulate = Color.RED
+			clock_label.modulate = Color.RED
 			piscar_texto()
 		
 		total_seconds -= 1
-		update_label()
+		update_clock_label()
 	else:
 		timer.stop()
-		show_game_over()
+		show_game_over("TEMPO ESGOTADO!", "Agora é hora de contar os crânios... digo, os gols.")
 
-func update_label():
+func update_clock_label():
 	var minutes = total_seconds / 60
 	var seconds = total_seconds % 60
-	label.text = "%02d:%02d" % [minutes, seconds]
+	clock_label.text = "%02d:%02d" % [minutes, seconds]
 
 func update_hearts(life: int):
 	for i in range(hearts.size()):
@@ -53,18 +53,20 @@ func update_hearts(life: int):
 		else:
 			hearts[i].texture = preload("res://addons/UI/heart_empty.png")
 
-func show_game_over():
+func show_game_over(title: String, text: String):
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	game_over_ui.visible = true
+	game_over_ui.get_node("Modal/TitleLabel").text = title
+	game_over_ui.get_node("Modal/TextLabel").text = text
 	get_tree().paused = true
 	
 func piscar_texto():
 	var tween := create_tween()
 
 	tween.tween_property(
-		label, "scale", Vector2(1.4, 1.4), 0.15
+		clock_label, "scale", Vector2(1.4, 1.4), 0.15
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 	tween.tween_property(
-		label, "scale", Vector2(1.0, 1.0), 0.15
+		clock_label, "scale", Vector2(1.0, 1.0), 0.15
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)

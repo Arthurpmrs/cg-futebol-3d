@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="dungeonball"
-run/main_scene="uid://ba0hlx3ru1bin"
+run/main_scene="uid://dnyrpqyw5v4oo"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://dgdpuno5p3ylo"
 
 [autoload]
 
