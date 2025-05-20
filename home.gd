@@ -18,7 +18,6 @@ func _on_Exit_pressed():
 	get_tree().quit()
 
 func _on_Start_hovered():
-	
 	$ButtonsContainer/StartButton.add_theme_icon_override("icon", skull_icon)
 
 func _on_Start_unhovered():
@@ -29,3 +28,9 @@ func _on_Exit_hovered():
 
 func _on_Exit_unhovered():
 	$ButtonsContainer/ExitButton.remove_theme_icon_override("icon")
+
+func _on_start_button_mouse_entered() -> void:
+	$HoverbtnSFX.play()
+
+func _on_exit_button_mouse_entered() -> void:
+	$HoverbtnSFX.play()

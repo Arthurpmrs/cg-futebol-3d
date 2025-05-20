@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ci5wtvgw55ph3"]
+[gd_scene load_steps=9 format=3 uid="uid://ci5wtvgw55ph3"]
 
 [ext_resource type="Script" uid="uid://twbg0c255jv5" path="res://game_over.gd" id="1_28vn7"]
 [ext_resource type="FontFile" uid="uid://ufhn6w07r7k7" path="res://addons/UI/fonts/MedievalSharp-Regular.ttf" id="2_k2vha"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://5t6ohgydjs80" path="res://addons/UI/assets-PNG/Default/banner_classic_curtain.png" id="4_3u7xm"]
 [ext_resource type="Texture2D" uid="uid://8623ufymx1qe" path="res://addons/UI/assets-PNG/Default/button_brown.png" id="5_woa3c"]
 [ext_resource type="Texture2D" uid="uid://c4fnf4tp7q8un" path="res://addons/UI/assets-PNG/Default/button_red.png" id="6_dd2jf"]
+[ext_resource type="AudioStream" uid="uid://b77dvge1n826d" path="res://addons/UI/sounds/sfx-final_whistle.wav" id="7_k2vha"]
+[ext_resource type="AudioStream" uid="uid://by0juq6ifkrko" path="res://addons/UI/sounds/sfx-clickbtn.wav" id="8_fkf4o"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -144,3 +146,13 @@ theme_override_fonts/font = ExtResource("2_k2vha")
 text = "Tela Inicial"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FinalWhistleSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_k2vha")
+volume_db = 24.0
+
+[node name="HoverbtnSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_fkf4o")
+
+[connection signal="mouse_entered" from="Modal/PlayAgainButton" to="." method="_on_play_again_button_mouse_entered"]
+[connection signal="mouse_entered" from="Modal/HomeButton" to="." method="_on_home_button_mouse_entered"]

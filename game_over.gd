@@ -10,6 +10,7 @@ func _ready():
 	$Modal/HomeButton.pressed.connect(_on_HomeButton_pressed)
 
 func show_game_over(title: String, message: String):
+	$FinalWhistleSFX.play()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	self.visible = true
 	title_label.text = title
@@ -24,3 +25,11 @@ func _on_PlayAgainButton_pressed():
 func _on_HomeButton_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://home_ui.tscn")
+
+
+func _on_play_again_button_mouse_entered() -> void:
+	$HoverbtnSFX.play()
+
+func _on_home_button_mouse_entered() -> void:
+	$HoverbtnSFX.play()
+	

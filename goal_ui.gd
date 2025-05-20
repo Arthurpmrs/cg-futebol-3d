@@ -20,8 +20,11 @@ func show_goal_announcement():
 	GameManager.is_paused = false
 
 func show_countdown():
+	$CountdownSound.play()
 	var messages = ["3...", "2...", "1...", "Crânios!"]
 	for msg in messages:
+		if msg == "Crânios!":
+			$WhistleSFX.play()
 		countdown_label.text = msg
-		await get_tree().create_timer(0.7, false).timeout
+		await get_tree().create_timer(0.8, false).timeout
 	

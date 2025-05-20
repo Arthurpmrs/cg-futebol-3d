@@ -5,9 +5,7 @@
 [ext_resource type="Theme" uid="uid://vqbrw34nkhx8" path="res://medieval_theme.tres" id="2_nh1v6"]
 [ext_resource type="Texture2D" uid="uid://cky7pqxkkhwp1" path="res://addons/UI/backgorundHome2.jpg" id="2_xujxf"]
 [ext_resource type="AudioStream" uid="uid://d2fa7qbjc6xuy" path="res://addons/UI/sounds/soundtrack-menu.mp3" id="5_dhu8p"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xujxf"]
-load_path = "res://.godot/imported/backgorundHome.png-47436636e1e1a4112356113ff9620dd9.ctex"
+[ext_resource type="AudioStream" uid="uid://by0juq6ifkrko" path="res://addons/UI/sounds/sfx-clickbtn.wav" id="6_xujxf"]
 
 [node name="Home" type="Control"]
 process_mode = 3
@@ -34,17 +32,6 @@ offset_bottom = 536.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_xujxf")
-
-[node name="Background" type="TextureRect" parent="."]
-visible = false
-modulate = Color(0.803922, 0.694118, 0.54902, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CompressedTexture2D_xujxf")
 
 [node name="Title" type="TextureRect" parent="."]
 layout_mode = 1
@@ -79,6 +66,7 @@ layout_mode = 2
 theme = ExtResource("2_nh1v6")
 theme_type_variation = &"FlatButton"
 theme_override_colors/font_hover_color = Color(0.968627, 0.878431, 0.713726, 1)
+theme_override_colors/font_pressed_color = Color(0.91, 0.82719, 0.6734, 1)
 text = "Jogar"
 flat = true
 
@@ -94,3 +82,10 @@ process_mode = 3
 stream = ExtResource("5_dhu8p")
 autoplay = true
 parameters/looping = true
+
+[node name="HoverbtnSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_xujxf")
+volume_db = 24.0
+
+[connection signal="mouse_entered" from="ButtonsContainer/StartButton" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_entered" from="ButtonsContainer/ExitButton" to="." method="_on_exit_button_mouse_entered"]
