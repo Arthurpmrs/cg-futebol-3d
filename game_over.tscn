@@ -39,6 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Frame" type="NinePatchRect" parent="Modal"]
+layout_mode = 0
 offset_left = -245.0
 offset_top = -133.0
 offset_right = 292.0
@@ -50,6 +51,7 @@ patch_margin_right = 44
 patch_margin_bottom = 44
 
 [node name="TitleBanner" type="TextureRect" parent="Modal"]
+layout_mode = 0
 offset_left = -139.0
 offset_top = -162.0
 offset_right = 177.0
@@ -57,6 +59,7 @@ offset_bottom = -83.0
 texture = ExtResource("4_3u7xm")
 
 [node name="TitleLabel" type="Label" parent="Modal"]
+layout_mode = 0
 offset_left = -124.0
 offset_top = -146.0
 offset_right = 167.0
@@ -68,6 +71,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextLabel" type="Label" parent="Modal"]
+layout_mode = 0
 offset_left = -196.0
 offset_top = -43.0
 offset_right = 241.0
@@ -81,6 +85,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="PlayAgainButton" type="Button" parent="Modal"]
+layout_mode = 0
 offset_left = 41.0
 offset_top = 56.0
 offset_right = 195.0
@@ -111,6 +116,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HomeButton" type="Button" parent="Modal"]
+layout_mode = 0
 offset_left = -150.0
 offset_top = 55.0
 offset_right = 6.0

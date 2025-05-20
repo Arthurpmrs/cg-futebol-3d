@@ -30,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 				var displacement = current_position - _last_position
 				
 				if displacement.length() > 0.001:
-					var rotation_axis = displacement.normalized().cross(Vector3.UP).normalized()		
+					var rotation_axis = displacement.normalized().cross(Vector3.DOWN).normalized()		
 					if rotation_axis.length() > 0.001:
 						rotation_axis = rotation_axis.normalized()
 						var angular_distance = displacement.length() / bola_radius

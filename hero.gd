@@ -150,7 +150,8 @@ func set_mesh_opacity(mesh_instance: MeshInstance3D, opacity: float) -> void:
 				material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 			else:
 				material.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
-
+				return
+			
 			var color = material.albedo_color
 			color.a = opacity
 			material.albedo_color = color
@@ -167,4 +168,6 @@ func reset_hero():
 	animation_player.play("Idle")
 	_ball.state = Ball.BallState.FREE
 	_camera_pivot.rotation = initial_camera
+	set_opacity_recursive(_skin, 1.0)
+	_invincible_timer = 0.0
 	

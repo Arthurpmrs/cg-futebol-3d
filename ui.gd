@@ -1,6 +1,6 @@
 extends Control
 
-var total_seconds = 3  # 5 minutos
+var total_seconds = 300  # 5 minutos
 
 @onready var clock_label = $CountdownText
 @onready var timer = $CountdownTimer

@@ -38,5 +38,6 @@ func reset_positions():
 	ball.global_transform.origin = ball.get("initial_position")
 	ball.linear_velocity = Vector3.ZERO
 	for enemy in enemies:
-		enemy.reset_enemy()
+		if enemy:
+			enemy.reset_enemy()
 		

@@ -10,7 +10,6 @@ func _ready():
 	$Modal/HomeButton.pressed.connect(_on_HomeButton_pressed)
 
 func show_game_over(title: String, message: String):
-	print('bbb')
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	self.visible = true
 	title_label.text = title
@@ -19,6 +18,7 @@ func show_game_over(title: String, message: String):
 
 func _on_PlayAgainButton_pressed():
 	get_tree().paused = false
+	GameManager.player.reset_hero()
 	get_tree().reload_current_scene()
 
 func _on_HomeButton_pressed():
