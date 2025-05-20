@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctal6jipjiojx"]
+[gd_scene load_steps=9 format=3 uid="uid://ctal6jipjiojx"]
 
-[ext_resource type="Texture2D" uid="uid://dx4kdrjstcsvt" path="res://addons/UI/PNG/Double/panel_brown_corners_b.png" id="1_5w4hl"]
+[ext_resource type="Texture2D" uid="uid://dx4kdrjstcsvt" path="res://addons/UI/assets-PNG/Double/panel_brown_corners_b.png" id="1_5w4hl"]
 [ext_resource type="Script" uid="uid://be3bhxlj6stl2" path="res://pause_ui.gd" id="1_cd4je"]
-[ext_resource type="Texture2D" uid="uid://5t6ohgydjs80" path="res://addons/UI/PNG/Default/banner_classic_curtain.png" id="2_cd4je"]
+[ext_resource type="Texture2D" uid="uid://5t6ohgydjs80" path="res://addons/UI/assets-PNG/Default/banner_classic_curtain.png" id="2_cd4je"]
 [ext_resource type="FontFile" uid="uid://ufhn6w07r7k7" path="res://addons/UI/fonts/MedievalSharp-Regular.ttf" id="3_tce7n"]
-[ext_resource type="Texture2D" uid="uid://c4fnf4tp7q8un" path="res://addons/UI/PNG/Default/button_red.png" id="4_nehuh"]
-[ext_resource type="Texture2D" uid="uid://8623ufymx1qe" path="res://addons/UI/PNG/Default/button_brown.png" id="5_b4yyp"]
+[ext_resource type="Texture2D" uid="uid://c4fnf4tp7q8un" path="res://addons/UI/assets-PNG/Default/button_red.png" id="4_nehuh"]
+[ext_resource type="Texture2D" uid="uid://8623ufymx1qe" path="res://addons/UI/assets-PNG/Default/button_brown.png" id="5_b4yyp"]
+[ext_resource type="Theme" uid="uid://vqbrw34nkhx8" path="res://medieval_theme.tres" id="5_nehuh"]
+[ext_resource type="AudioStream" uid="uid://by0juq6ifkrko" path="res://addons/UI/sounds/sfx-clickbtn.wav" id="7_tce7n"]
 
 [node name="PauseUI" type="Control"]
 process_mode = 3
@@ -67,21 +69,36 @@ offset_right = 167.0
 offset_bottom = -105.0
 theme_override_fonts/font = ExtResource("3_tce7n")
 theme_override_font_sizes/font_size = 28
-text = "Pause"
+text = "Intervalo Técnico"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TextLabel" type="Label" parent="Modal"]
+layout_mode = 0
+offset_left = -195.0
+offset_top = -46.0
+offset_right = 239.0
+offset_bottom = 15.0
+theme = ExtResource("5_nehuh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Foi só tomar uma água e o mundo parou."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="Continue" type="Button" parent="Modal"]
 layout_mode = 0
-offset_left = -123.0
-offset_top = -46.0
-offset_right = 171.0
-offset_bottom = -4.0
+offset_left = 51.0
+offset_top = 56.0
+offset_right = 205.0
+offset_bottom = 98.0
+pivot_offset = Vector2(0, -8)
 text = "asdasd"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Modal/Continue"]
 layout_mode = 0
-offset_right = 294.0
+offset_right = 153.0
 offset_bottom = 43.0
 texture = ExtResource("4_nehuh")
 patch_margin_left = 16
@@ -91,24 +108,25 @@ patch_margin_bottom = 16
 
 [node name="Label" type="Label" parent="Modal/Continue"]
 layout_mode = 0
-offset_top = 3.0
-offset_right = 292.0
-offset_bottom = 39.0
+offset_top = 2.0
+offset_right = 151.0
+offset_bottom = 42.0
 theme_override_fonts/font = ExtResource("3_tce7n")
+theme_override_font_sizes/font_size = 28
 text = "Continuar"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HomeButton" type="Button" parent="Modal"]
 layout_mode = 0
-offset_left = -123.0
-offset_top = 21.0
-offset_right = 170.0
-offset_bottom = 64.0
+offset_left = -167.0
+offset_top = 55.0
+offset_right = -14.0
+offset_bottom = 98.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Modal/HomeButton"]
 layout_mode = 0
-offset_right = 282.0
+offset_right = 146.0
 offset_bottom = 44.0
 scale = Vector2(1.04, 1)
 texture = ExtResource("5_b4yyp")
@@ -121,10 +139,17 @@ patch_margin_bottom = 16
 layout_mode = 0
 offset_left = 2.0
 offset_top = 4.0
-offset_right = 291.0
+offset_right = 150.0
 offset_bottom = 43.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_tce7n")
+theme_override_font_sizes/font_size = 24
 text = "Sair"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HoverbtnSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_tce7n")
+
+[connection signal="mouse_entered" from="Modal/Continue" to="." method="_on_continue_mouse_entered"]
+[connection signal="mouse_entered" from="Modal/HomeButton" to="." method="_on_home_button_mouse_entered"]
