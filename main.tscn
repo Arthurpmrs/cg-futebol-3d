@@ -1118,4 +1118,5 @@ texture = ExtResource("47_0cbny")
 process_mode = 3
 
 [node name="GameOver" parent="." instance=ExtResource("51_uypp3")]
+process_mode = 3
 visible = false
