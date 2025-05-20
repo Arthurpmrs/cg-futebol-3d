@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://twbg0c255jv5" path="res://game_over.gd" id="1_28vn7"]
 [ext_resource type="FontFile" uid="uid://ufhn6w07r7k7" path="res://addons/UI/fonts/MedievalSharp-Regular.ttf" id="2_k2vha"]
-[ext_resource type="Texture2D" uid="uid://dx4kdrjstcsvt" path="res://addons/UI/PNG/Double/panel_brown_corners_b.png" id="3_fkf4o"]
-[ext_resource type="Texture2D" uid="uid://5t6ohgydjs80" path="res://addons/UI/PNG/Default/banner_classic_curtain.png" id="4_3u7xm"]
-[ext_resource type="Texture2D" uid="uid://8623ufymx1qe" path="res://addons/UI/PNG/Default/button_brown.png" id="5_woa3c"]
-[ext_resource type="Texture2D" uid="uid://c4fnf4tp7q8un" path="res://addons/UI/PNG/Default/button_red.png" id="6_dd2jf"]
+[ext_resource type="Texture2D" uid="uid://dx4kdrjstcsvt" path="res://addons/UI/assets-PNG/Double/panel_brown_corners_b.png" id="3_fkf4o"]
+[ext_resource type="Texture2D" uid="uid://5t6ohgydjs80" path="res://addons/UI/assets-PNG/Default/banner_classic_curtain.png" id="4_3u7xm"]
+[ext_resource type="Texture2D" uid="uid://8623ufymx1qe" path="res://addons/UI/assets-PNG/Default/button_brown.png" id="5_woa3c"]
+[ext_resource type="Texture2D" uid="uid://c4fnf4tp7q8un" path="res://addons/UI/assets-PNG/Default/button_red.png" id="6_dd2jf"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3

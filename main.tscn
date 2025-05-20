@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://ba0hlx3ru1bin"]
+[gd_scene load_steps=68 format=3 uid="uid://ba0hlx3ru1bin"]
 
 [ext_resource type="PackedScene" uid="uid://dmi5m60021myi" path="res://hero.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://d1xt3nhybxysy" path="res://ball.tscn" id="2_0n3wm"]
@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://cwihvws58mx" path="res://goal_keeper.tscn" id="45_0n3wm"]
 [ext_resource type="PackedScene" uid="uid://baxjkgcksbaja" path="res://referee.tscn" id="46_qnost"]
 [ext_resource type="Texture2D" uid="uid://cdk2aa367cle6" path="res://addons/UI/heart_full.png" id="47_0cbny"]
+[ext_resource type="AudioStream" uid="uid://byw6hyimwglst" path="res://addons/UI/sounds/soundtrack-game.mp3" id="50_blkrb"]
 [ext_resource type="PackedScene" uid="uid://6hgghlkbnhlh" path="res://goal_ui.tscn" id="50_hrvbo"]
 [ext_resource type="PackedScene" uid="uid://ci5wtvgw55ph3" path="res://game_over.tscn" id="51_uypp3"]
 
@@ -1113,6 +1114,12 @@ texture = ExtResource("47_0cbny")
 [node name="Heart5" type="TextureRect" parent="UI/LifeContainer"]
 layout_mode = 2
 texture = ExtResource("47_0cbny")
+
+[node name="SoundtrackGame" type="AudioStreamPlayer" parent="UI"]
+process_mode = 3
+stream = ExtResource("50_blkrb")
+autoplay = true
+parameters/looping = true
 
 [node name="GoalUI" parent="." instance=ExtResource("50_hrvbo")]
 process_mode = 3
