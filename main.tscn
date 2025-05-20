@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://ba0hlx3ru1bin"]
+[gd_scene load_steps=68 format=3 uid="uid://ba0hlx3ru1bin"]
 
 [ext_resource type="PackedScene" uid="uid://dmi5m60021myi" path="res://hero.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://d1xt3nhybxysy" path="res://ball.tscn" id="2_0n3wm"]
@@ -51,6 +51,7 @@
 [ext_resource type="Texture2D" uid="uid://cdk2aa367cle6" path="res://addons/UI/heart_full.png" id="47_0cbny"]
 [ext_resource type="PackedScene" uid="uid://6hgghlkbnhlh" path="res://goal_ui.tscn" id="50_hrvbo"]
 [ext_resource type="PackedScene" uid="uid://ci5wtvgw55ph3" path="res://game_over.tscn" id="51_uypp3"]
+[ext_resource type="PackedScene" uid="uid://ctal6jipjiojx" path="res://pause_ui.tscn" id="52_blkrb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 sky_top_color = Color(0.119319, 0.102857, 0.14065, 1)
@@ -1119,4 +1120,7 @@ process_mode = 3
 
 [node name="GameOver" parent="." instance=ExtResource("51_uypp3")]
 process_mode = 3
+visible = false
+
+[node name="PauseUI" parent="." instance=ExtResource("52_blkrb")]
 visible = false

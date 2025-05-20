@@ -31,6 +31,8 @@ signal life_changed(new_life)
 
 signal player_died(gameover_title, gameover_text)
 
+signal paused_game()
+
 func _ready() -> void:
 	GameManager.player = self
 	var hud = get_tree().get_root().get_node("Main/UI")
@@ -41,7 +43,8 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
+		emit_signal("paused_game")
+	
 func _unhandled_input(event: InputEvent) -> void:
 	var is_camera_motion := (
 		event is InputEventMouseMotion and

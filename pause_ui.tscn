@@ -1,0 +1,130 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctal6jipjiojx"]
+
+[ext_resource type="Texture2D" uid="uid://dx4kdrjstcsvt" path="res://addons/UI/PNG/Double/panel_brown_corners_b.png" id="1_5w4hl"]
+[ext_resource type="Script" uid="uid://be3bhxlj6stl2" path="res://pause_ui.gd" id="1_cd4je"]
+[ext_resource type="Texture2D" uid="uid://5t6ohgydjs80" path="res://addons/UI/PNG/Default/banner_classic_curtain.png" id="2_cd4je"]
+[ext_resource type="FontFile" uid="uid://ufhn6w07r7k7" path="res://addons/UI/fonts/MedievalSharp-Regular.ttf" id="3_tce7n"]
+[ext_resource type="Texture2D" uid="uid://c4fnf4tp7q8un" path="res://addons/UI/PNG/Default/button_red.png" id="4_nehuh"]
+[ext_resource type="Texture2D" uid="uid://8623ufymx1qe" path="res://addons/UI/PNG/Default/button_brown.png" id="5_b4yyp"]
+
+[node name="PauseUI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cd4je")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Modal" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Frame" type="NinePatchRect" parent="Modal"]
+layout_mode = 0
+offset_left = -245.0
+offset_top = -133.0
+offset_right = 292.0
+offset_bottom = 158.0
+texture = ExtResource("1_5w4hl")
+patch_margin_left = 44
+patch_margin_top = 44
+patch_margin_right = 44
+patch_margin_bottom = 44
+
+[node name="TitleBanner" type="TextureRect" parent="Modal"]
+layout_mode = 0
+offset_left = -139.0
+offset_top = -162.0
+offset_right = 177.0
+offset_bottom = -83.0
+texture = ExtResource("2_cd4je")
+
+[node name="TitleLabel" type="Label" parent="Modal"]
+layout_mode = 0
+offset_left = -124.0
+offset_top = -146.0
+offset_right = 167.0
+offset_bottom = -105.0
+theme_override_fonts/font = ExtResource("3_tce7n")
+theme_override_font_sizes/font_size = 28
+text = "Pause"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Continue" type="Button" parent="Modal"]
+layout_mode = 0
+offset_left = -123.0
+offset_top = -46.0
+offset_right = 171.0
+offset_bottom = -4.0
+text = "asdasd"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Modal/Continue"]
+layout_mode = 0
+offset_right = 294.0
+offset_bottom = 43.0
+texture = ExtResource("4_nehuh")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Label" type="Label" parent="Modal/Continue"]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 292.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("3_tce7n")
+text = "Continuar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HomeButton" type="Button" parent="Modal"]
+layout_mode = 0
+offset_left = -123.0
+offset_top = 21.0
+offset_right = 170.0
+offset_bottom = 64.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Modal/HomeButton"]
+layout_mode = 0
+offset_right = 282.0
+offset_bottom = 44.0
+scale = Vector2(1.04, 1)
+texture = ExtResource("5_b4yyp")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Label" type="Label" parent="Modal/HomeButton"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 291.0
+offset_bottom = 43.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_tce7n")
+text = "Sair"
+horizontal_alignment = 1
+vertical_alignment = 1
