@@ -26,7 +26,6 @@ func _on_HomeButton_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://home_ui.tscn")
 
-
 func _on_play_again_button_mouse_entered() -> void:
 	$HoverbtnSFX.play()
 

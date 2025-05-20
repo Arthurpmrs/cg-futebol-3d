@@ -886,6 +886,12 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 33.0102,
 [node name="post_lantern5" parent="Map/Decoration" instance=ExtResource("41_4lmeg")]
 transform = Transform3D(-0.393364, 0, 0.919383, 0, 1, 0, -0.919383, 0, -0.393364, -3.67225, 0.463909, 12.7621)
 
+[node name="OmniLight3D2" type="OmniLight3D" parent="Map/Decoration/post_lantern5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99045, 0.991505)
+light_color = Color(1, 0.61, 0.22, 1)
+light_energy = 4.0
+omni_range = 19.0
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/Decoration/post_lantern5"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Decoration/post_lantern5/StaticBody3D"]
@@ -908,6 +914,13 @@ light_color = Color(1, 0.61, 0.22, 1)
 light_energy = 4.0
 omni_range = 19.0
 
+[node name="OmniLight3D2" type="OmniLight3D" parent="Map/Decoration/post_lantern2"]
+transform = Transform3D(0.779108, 0, 0.626889, 0, 1, 0, -0.626889, 0, 0.779108, 0.00567341, 1.64661, 0.991505)
+light_color = Color(1, 0.61, 0.22, 1)
+light_energy = 4.0
+shadow_enabled = true
+omni_range = 19.0
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/Decoration/post_lantern2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Decoration/post_lantern2/StaticBody3D"]
@@ -923,6 +936,13 @@ light_color = Color(1, 0.61, 0.22, 1)
 light_energy = 4.0
 omni_range = 19.0
 
+[node name="OmniLight3D2" type="OmniLight3D" parent="Map/Decoration/post_lantern4"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 9.53674e-07, 1.8787, 0.991505)
+light_color = Color(1, 0.61, 0.22, 1)
+light_energy = 4.0
+shadow_enabled = true
+omni_range = 19.0
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/Decoration/post_lantern4"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Decoration/post_lantern4/StaticBody3D"]
@@ -936,6 +956,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40513, 0.516745, -24.9505)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99045, 0.991505)
 light_color = Color(1, 0.61, 0.22, 1)
 light_energy = 4.0
+omni_range = 19.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Map/Decoration/post_lantern3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38419e-07, 1.86618, 0.991505)
+light_color = Color(1, 0.61, 0.22, 1)
+light_energy = 4.0
+shadow_enabled = true
 omni_range = 19.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/Decoration/post_lantern3"]
@@ -965,6 +992,13 @@ light_color = Color(1, 0.611765, 0.219608, 1)
 light_energy = 5.0
 omni_range = 5.71073
 
+[node name="OmniLight3D2" type="OmniLight3D" parent="Map/Decoration/torch_mounted2"]
+transform = Transform3D(1, -8.46481e-09, 8.27448e-10, 8.46481e-09, 0.98107, -0.193652, 8.27448e-10, 0.193652, 0.98107, 0.02985, 0.774322, 0.560871)
+light_color = Color(1, 0.611765, 0.219608, 1)
+light_energy = 5.0
+shadow_enabled = true
+omni_range = 5.71073
+
 [node name="torch_mounted3" parent="Map/Decoration" instance=ExtResource("42_0cp0l")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -32.8221, 2.14854, 6.05362)
 
@@ -972,6 +1006,13 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -32.82
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02985, 0.43315, 0.347184)
 light_color = Color(1, 0.611765, 0.219608, 1)
 light_energy = 5.0
+omni_range = 5.71073
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Map/Decoration/torch_mounted3"]
+transform = Transform3D(1, -1.16183e-08, 5.15698e-10, 1.16183e-08, 0.996067, -0.0885988, 5.15698e-10, 0.0885988, 0.996067, -0.0671844, 0.885762, 0.485057)
+light_color = Color(1, 0.611765, 0.219608, 1)
+light_energy = 5.0
+shadow_enabled = true
 omni_range = 5.71073
 
 [node name="torch_mounted4" parent="Map/Decoration" instance=ExtResource("42_0cp0l")]
@@ -983,6 +1024,13 @@ light_color = Color(1, 0.611765, 0.219608, 1)
 light_energy = 5.0
 omni_range = 5.71073
 
+[node name="OmniLight3D2" type="OmniLight3D" parent="Map/Decoration/torch_mounted4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02985, 0.826237, 0.347184)
+light_color = Color(1, 0.611765, 0.219608, 1)
+light_energy = 5.0
+shadow_enabled = true
+omni_range = 5.71073
+
 [node name="torch_mounted5" parent="Map/Decoration" instance=ExtResource("42_0cp0l")]
 transform = Transform3D(-0.997498, 0, 0.0706965, 0, 1, 0, -0.0706965, 0, -0.997498, 33.5503, 2.28775, 5.84962)
 
@@ -990,6 +1038,13 @@ transform = Transform3D(-0.997498, 0, 0.0706965, 0, 1, 0, -0.0706965, 0, -0.9974
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02985, 0.43315, 0.347184)
 light_color = Color(1, 0.611765, 0.219608, 1)
 light_energy = 5.0
+omni_range = 5.71073
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Map/Decoration/torch_mounted5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02985, 1.02406, 0.347184)
+light_color = Color(1, 0.611765, 0.219608, 1)
+light_energy = 5.0
+shadow_enabled = true
 omni_range = 5.71073
 
 [node name="lantern_standing3" parent="Map/Decoration" instance=ExtResource("43_d2t1y")]
