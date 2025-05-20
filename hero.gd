@@ -19,6 +19,8 @@ var _gravity := -30
 @onready var _ball: RigidBody3D = %Ball
 @onready var animation_player = $Pivot/Knight/AnimationPlayer
 @onready var initial_position: Vector3 = global_transform.origin
+@onready var initial_rotation: Vector3 = _skin.rotation
+@onready var initial_camera: Vector3 = _camera_pivot.rotation
 @onready var _ball_release_timer = 0.0
 
 var max_life := 5
@@ -31,7 +33,7 @@ signal player_died(gameover_title, gameover_text)
 
 func _ready() -> void:
 	GameManager.player = self
-	var hud = get_tree().get_root().get_node("Main/UI")  # ajuste o caminho conforme sua cena
+	var hud = get_tree().get_root().get_node("Main/UI")
 	self.connect("life_changed", Callable(hud, "update_hearts"))
 
 func _input(event: InputEvent) -> void:
@@ -53,6 +55,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			_ball.kick_ball()
 	
 func _physics_process(delta: float) -> void:
+	if GameManager.is_paused:
+		return
+	
 	_camera_pivot.rotation.x += _camera_input_direction.y * delta
 	_camera_pivot.rotation.x = clamp(_camera_pivot.rotation.x, -PI / 6.0 , PI / 3.0)
 	_camera_pivot.rotation.y -= _camera_input_direction.x * delta
@@ -156,4 +161,10 @@ func set_opacity_recursive(node: Node, opacity: float) -> void:
 			set_mesh_opacity(child, opacity)
 		set_opacity_recursive(child, opacity)
 	
+func reset_hero():
+	global_transform.origin = initial_position
+	_skin.rotation = initial_rotation
+	animation_player.play("Idle")
+	_ball.state = Ball.BallState.FREE
+	_camera_pivot.rotation = initial_camera
 	

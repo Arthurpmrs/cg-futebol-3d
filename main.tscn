@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://ba0hlx3ru1bin"]
+[gd_scene load_steps=67 format=3 uid="uid://ba0hlx3ru1bin"]
 
 [ext_resource type="PackedScene" uid="uid://dmi5m60021myi" path="res://hero.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://d1xt3nhybxysy" path="res://ball.tscn" id="2_0n3wm"]
@@ -49,6 +49,8 @@
 [ext_resource type="PackedScene" uid="uid://cwihvws58mx" path="res://goal_keeper.tscn" id="45_0n3wm"]
 [ext_resource type="PackedScene" uid="uid://baxjkgcksbaja" path="res://referee.tscn" id="46_qnost"]
 [ext_resource type="Texture2D" uid="uid://cdk2aa367cle6" path="res://addons/UI/heart_full.png" id="47_0cbny"]
+[ext_resource type="PackedScene" uid="uid://6hgghlkbnhlh" path="res://goal_ui.tscn" id="50_hrvbo"]
+[ext_resource type="PackedScene" uid="uid://ci5wtvgw55ph3" path="res://game_over.tscn" id="51_uypp3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 sky_top_color = Color(0.119319, 0.102857, 0.14065, 1)
@@ -128,7 +130,13 @@ size = Vector3(91.6502, 20, 91.584)
 data = ExtResource("44_gngh3")
 
 [node name="Hero" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.34202, 0.523298, -5.96147)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.114404, 0.523298, -8.44392)
+
+[node name="GoalKeeper" parent="." groups=["skeleton"] instance=ExtResource("45_0n3wm")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.30856, 0.466733, 31.372)
+
+[node name="Referee" parent="." groups=["skeleton"] instance=ExtResource("46_qnost")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21.7982, 0.575251, 0)
 
 [node name="Enemy" parent="." instance=ExtResource("42_d2t1y")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.46462, 0.516772, 2.7324)
@@ -883,10 +891,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.53674e-07, 1.75198, 0.4315
 shape = SubResource("BoxShape3D_gngh3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Map/Decoration/post_lantern5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99045, 0.991505)
+transform = Transform3D(1, 0, 1.49012e-07, 0, 1, 0, -1.49012e-07, 0, 1, 0.129158, 1.63667, 0.999814)
 light_color = Color(1, 0.61, 0.22, 1)
 light_energy = 4.0
-omni_range = 19.0
+shadow_enabled = true
+omni_range = 6.7003
 
 [node name="post_lantern2" parent="Map/Decoration" instance=ExtResource("41_4lmeg")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.76927, 0.516745, -8.8574)
@@ -1105,8 +1114,8 @@ texture = ExtResource("47_0cbny")
 layout_mode = 2
 texture = ExtResource("47_0cbny")
 
-[node name="GoalKeeper" parent="." groups=["skeleton"] instance=ExtResource("45_0n3wm")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.30856, 0.466733, 31.372)
+[node name="GoalUI" parent="." instance=ExtResource("50_hrvbo")]
+process_mode = 3
 
-[node name="Referee" parent="." groups=["skeleton"] instance=ExtResource("46_qnost")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 21.7982, 0.575251, 0)
+[node name="GameOver" parent="." instance=ExtResource("51_uypp3")]
+visible = false

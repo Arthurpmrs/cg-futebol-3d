@@ -11,6 +11,8 @@ var _gravity := -30
 @onready var animation_player = $Pivot/Skeleton_Minion/AnimationPlayer
 @onready var _skin: Node3D = %Skeleton_Minion
 @onready var initial_position: Vector3 = global_transform.origin
+@onready var initial_rotation: Vector3 = _skin.rotation
+
 var random_speed: float = randi_range(min_speed, max_speed)
 var target_offset_x: float = randf_range(2.0, 6.0) * (1 if randf() > 0.5 else -1)
 var target_offset_z: float = randf_range(2.0, 6.0) * (1 if randf() > 0.5 else -1)
@@ -38,6 +40,9 @@ func get_target_position() -> Vector3:
 	return target_position
 
 func _physics_process(delta: float) -> void:
+	if GameManager.is_paused:
+		return
+	
 	var target_position = get_target_position()
 	
 	var move_direction = (target_position - position).normalized()
@@ -74,3 +79,8 @@ func _get_skin_rotation_angle(target: Vector3, delta: float) -> float:
 	var target_angle = target_basis.get_euler().y + deg_to_rad(180)
 	
 	return lerp_angle(_skin.global_rotation.y, target_angle, rotation_speed * delta)
+
+func reset_enemy():
+	global_transform.origin = initial_position
+	_skin.rotation = initial_rotation
+	animation_player.play("Idle")

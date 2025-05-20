@@ -18,23 +18,31 @@ script = ExtResource("1_28vn7")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
-offset_right = 1159.0
-offset_bottom = 653.0
-
-[node name="Modal" type="Control" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Modal" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Frame" type="NinePatchRect" parent="Modal"]
-layout_mode = 0
-offset_left = 317.0
-offset_top = 183.0
-offset_right = 854.0
-offset_bottom = 474.0
+offset_left = -245.0
+offset_top = -133.0
+offset_right = 292.0
+offset_bottom = 158.0
 texture = ExtResource("3_fkf4o")
 patch_margin_left = 44
 patch_margin_top = 44
@@ -42,19 +50,17 @@ patch_margin_right = 44
 patch_margin_bottom = 44
 
 [node name="TitleBanner" type="TextureRect" parent="Modal"]
-layout_mode = 0
-offset_left = 423.0
-offset_top = 154.0
-offset_right = 739.0
-offset_bottom = 233.0
+offset_left = -139.0
+offset_top = -162.0
+offset_right = 177.0
+offset_bottom = -83.0
 texture = ExtResource("4_3u7xm")
 
 [node name="TitleLabel" type="Label" parent="Modal"]
-layout_mode = 0
-offset_left = 438.0
-offset_top = 170.0
-offset_right = 729.0
-offset_bottom = 211.0
+offset_left = -124.0
+offset_top = -146.0
+offset_right = 167.0
+offset_bottom = -105.0
 theme_override_fonts/font = ExtResource("2_k2vha")
 theme_override_font_sizes/font_size = 28
 text = "Fim de Jogo!"
@@ -62,11 +68,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextLabel" type="Label" parent="Modal"]
-layout_mode = 0
-offset_left = 366.0
-offset_top = 273.0
-offset_right = 803.0
-offset_bottom = 336.0
+offset_left = -196.0
+offset_top = -43.0
+offset_right = 241.0
+offset_bottom = 20.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_k2vha")
 theme_override_font_sizes/font_size = 26
@@ -76,11 +81,10 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="PlayAgainButton" type="Button" parent="Modal"]
-layout_mode = 0
-offset_left = 603.0
-offset_top = 372.0
-offset_right = 757.0
-offset_bottom = 414.0
+offset_left = 41.0
+offset_top = 56.0
+offset_right = 195.0
+offset_bottom = 98.0
 text = "asdasd"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Modal/PlayAgainButton"]
@@ -107,11 +111,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HomeButton" type="Button" parent="Modal"]
-layout_mode = 0
-offset_left = 412.0
-offset_top = 371.0
-offset_right = 568.0
-offset_bottom = 414.0
+offset_left = -150.0
+offset_top = 55.0
+offset_right = 6.0
+offset_bottom = 98.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Modal/HomeButton"]
 layout_mode = 0

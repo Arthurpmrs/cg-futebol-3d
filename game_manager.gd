@@ -1,12 +1,15 @@
 extends Node
 
 signal score_updated(score_hero: int, score_skeleton: int)
+signal goal_scored
 
 var player: CharacterBody3D = null
 var ball: RigidBody3D = null
+var ui: Control = null
 @onready var enemies = []
 var score_hero: int = 0
 var score_skeleton: int = 0
+var is_paused: bool = false
 
 func _process(_delta: float) -> void:
 	if ball == null or player == null:
@@ -25,12 +28,15 @@ func on_goal_scored(goal: String):
 	print("hero: ", score_hero, "  skeleton: ", score_skeleton)
 	
 	emit_signal("score_updated", score_hero, score_skeleton)
-	
+	is_paused = true
+	emit_signal("goal_scored")
 	reset_positions()
+	
 
 func reset_positions():
-	player.global_transform.origin = player.get("initial_position")
+	player.reset_hero()
 	ball.global_transform.origin = ball.get("initial_position")
 	ball.linear_velocity = Vector3.ZERO
 	for enemy in enemies:
-		enemy.global_transform.origin = enemy.get("initial_position")
+		enemy.reset_enemy()
+		

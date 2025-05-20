@@ -1,12 +1,10 @@
 extends Control
 
-var total_seconds = 300  # 5 minutos
+var total_seconds = 3  # 5 minutos
 
 @onready var clock_label = $CountdownText
 @onready var timer = $CountdownTimer
 @onready var _placar = %PlacarLabel
-var game_over_ui = null
-
 @onready var hearts := [
 	$LifeContainer/Heart1,
 	$LifeContainer/Heart2,
@@ -15,16 +13,14 @@ var game_over_ui = null
 	$LifeContainer/Heart5,
 ]
 
+signal finished_timer
+
 func _ready():
+	GameManager.ui = self
 	update_clock_label()
 	timer.timeout.connect(_on_Timer_timeout)
 	GameManager.connect("score_updated", Callable(self, "_on_score_updated"))
 	
-	var game_over_scene = preload("res://game_over.tscn")
-	game_over_ui = game_over_scene.instantiate()
-	game_over_ui.visible = false
-	add_child(game_over_ui)
-	GameManager.player.connect("player_died", Callable(self, "show_game_over"))
 
 func _on_score_updated(score_hero: int, score_skeleton: int) -> void:
 	_placar.text = "%s x %s" % [score_hero, score_skeleton]
@@ -39,7 +35,8 @@ func _on_Timer_timeout():
 		update_clock_label()
 	else:
 		timer.stop()
-		show_game_over("TEMPO ESGOTADO!", "Agora é hora de contar os crânios... digo, os gols.")
+		emit_signal("finished_timer", "TEMPO ESGOTADO!", "Agora é hora de contar os crânios... digo, os gols.")
+		
 
 func update_clock_label():
 	var minutes = total_seconds / 60
@@ -52,13 +49,6 @@ func update_hearts(life: int):
 			hearts[i].texture = preload("res://addons/UI/heart_full.png")
 		else:
 			hearts[i].texture = preload("res://addons/UI/heart_empty.png")
-
-func show_game_over(title: String, text: String):
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	game_over_ui.visible = true
-	game_over_ui.get_node("Modal/TitleLabel").text = title
-	game_over_ui.get_node("Modal/TextLabel").text = text
-	get_tree().paused = true
 	
 func piscar_texto():
 	var tween := create_tween()
